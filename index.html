@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding - [Bride] & [Groom]</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <h1 class="splash-title">
+                <span class="bride-name-splash">[Bride]</span>
+                <span class="ampersand-splash">&</span>
+                <span class="groom-name-splash">[Groom]</span>
+            </h1>
+            <p class="splash-date">March 21, 2027</p>
+            <button class="enter-button" id="enterButton">Enter</button>
+        </div>
+    </div>
+
+    <!-- Background Music Player -->
+    <div class="music-player">
+        <button id="musicToggle" class="music-toggle" aria-label="Toggle music">
+            <svg class="music-icon play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18V6l10 6-10 6z"/>
+            </svg>
+            <svg class="music-icon pause-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="6" y="4" width="4" height="16"/>
+                <rect x="14" y="4" width="4" height="16"/>
+            </svg>
+        </button>
+        <audio id="backgroundMusic" loop>
+            <source src="./music.mp4" type="audio/mp4">
+        </audio>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="couple-names">[Bride] & [Groom]</span>
+            <span class="wedding-date">Celebrating Our Love · March 21, 2027</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#couple" class="nav-link">The Couple</a></li>
+            <li><a href="#gallery" class="nav-link">Gallery</a></li>
+            <li><a href="#venue" class="nav-link">Venue</a></li>
+            <li><a href="#rsvp" class="nav-link">RSVP</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Together Forever</p>
+            <h1 class="hero-title">
+                <span class="bride-name">[Bride Name]</span>
+                <span class="ampersand">&</span>
+                <span class="groom-name">[Groom Name]</span>
+            </h1>
+            <div class="hero-details">
+                <span class="detail-item">March 21, 2027</span>
+                <span class="separator">•</span>
+                <span class="detail-item">6 pm</span>
+                <span class="separator">•</span>
+                <span class="detail-item">[Venue Name]</span>
+            </div>
+            <div class="hero-buttons">
+                <a href="#couple" class="btn btn-primary">Meet the Couple</a>
+                <a href="#rsvp" class="btn btn-secondary">RSVP</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <p class="countdown-title">Counting down to our special day</p>
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Seconds</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Couple Section -->
+    <section class="couple-section" id="couple">
+        <h2 class="section-title">The Happy Couple</h2>
+        <div class="divider">
+            <span class="divider-icon">❖</span>
+        </div>
+        
+        <div class="couple-grid">
+            <!-- Bride -->
+            <div class="person-card" id="bride">
+                <div class="person-image-container">
+                    <div class="person-image bride-image">
+                        <!-- Placeholder for bride photo -->
+                        <div class="image-placeholder">Bride Photo</div>
+                    </div>
+                </div>
+                <h3 class="person-name">[Bride Full Name]</h3>
+                <div class="divider-small">
+                    <span class="divider-icon-small">❖</span>
+                </div>
+                <p class="person-bio">
+                    [Add a brief description about the bride - her interests, how she met the groom, 
+                    what she loves most about their relationship, or any special message she'd like to share.]
+                </p>
+                <a href="#bride-story" class="person-link">Her Story</a>
+            </div>
+
+            <!-- Groom -->
+            <div class="person-card" id="groom">
+                <div class="person-image-container">
+                    <div class="person-image groom-image">
+                        <!-- Placeholder for groom photo -->
+                        <div class="image-placeholder">Groom Photo</div>
+                    </div>
+                </div>
+                <h3 class="person-name">[Groom Full Name]</h3>
+                <div class="divider-small">
+                    <span class="divider-icon-small">❖</span>
+                </div>
+                <p class="person-bio">
+                    [Add a brief description about the groom - his interests, how he met the bride, 
+                    what he loves most about their relationship, or any special message he'd like to share.]
+                </p>
+                <a href="#groom-story" class="person-link">His Story</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <h2 class="section-title">Our Gallery</h2>
+        <div class="divider">
+            <span class="divider-icon">❖</span>
+        </div>
+        <p class="section-subtitle">Moments we cherish together</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item" data-aos="fade-up">
+                <div class="gallery-image">
+                    <div class="image-placeholder">Photo 1</div>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="gallery-image">
+                    <div class="image-placeholder">Photo 2</div>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="gallery-image">
+                    <div class="image-placeholder">Photo 3</div>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="gallery-image">
+                    <div class="image-placeholder">Photo 4</div>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="gallery-image">
+                    <div class="image-placeholder">Photo 5</div>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
+                <div class="gallery-image">
+                    <div class="image-placeholder">Photo 6</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section class="venue-section" id="venue">
+        <h2 class="section-title">Venue</h2>
+        <div class="divider">
+            <span class="divider-icon">❖</span>
+        </div>
+        
+        <div class="venue-content">
+            <div class="venue-info">
+                <h3 class="venue-name">The Grand Ballroom</h3>
+                <p class="venue-address">
+                    <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    1600 Amphitheatre Parkway<br>
+                    Mountain View, CA 94043
+                </p>
+                <div class="venue-details">
+                    <div class="venue-detail-item">
+                        <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <div>
+                            <strong>Ceremony:</strong> 3:00 PM<br>
+                            <strong>Reception:</strong> 5:00 PM
+                        </div>
+                    </div>
+                    <div class="venue-detail-item">
+                        <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <div>
+                            <strong>Date:</strong> March 21, 2027
+                        </div>
+                    </div>
+                </div>
+                <a href="https://www.google.com/maps/place/Googleplex/@37.4220656,-122.0862784,17z" target="_blank" class="btn btn-primary venue-btn">Get Directions</a>
+            </div>
+            
+            <div class="venue-map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.639290101911!2d-122.08627842346473!3d37.42206557192904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fba02425dad8f%3A0x6c296c66619367e0!2sGoogleplex!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="rsvp-section" id="rsvp">
+        <h2 class="section-title">RSVP</h2>
+        <div class="divider">
+            <span class="divider-icon">❖</span>
+        </div>
+        <p class="section-subtitle">We can't wait to celebrate with you!</p>
+        
+        <form class="rsvp-form" id="rsvpForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <div class="form-group">
+                <label>Will you be attending? *</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="attending" value="yes" required>
+                        <span>Joyfully Accept</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="attending" value="no" required>
+                        <span>Regretfully Decline</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group" id="guestsGroup" style="display: none;">
+                <label for="guests">Number of Guests</label>
+                <select id="guests" name="guests">
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="dietary">Dietary Restrictions</label>
+                <textarea id="dietary" name="dietary" rows="3" placeholder="Please let us know of any dietary restrictions or allergies"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Special Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Share your wishes or any special requests"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary submit-btn">Submit RSVP</button>
+        </form>
+        
+        <div class="rsvp-success" id="rsvpSuccess" style="display: none;">
+            <div class="success-icon">✓</div>
+            <h3>Thank You!</h3>
+            <p>Your RSVP has been received. We look forward to celebrating with you!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <h3 class="footer-title">
+                    <span class="couple-names-footer">[Bride] & [Groom]</span>
+                </h3>
+                <p class="footer-subtitle">[Bride] & [Groom] · March 21, 2027</p>
+                <p class="footer-description">
+                    A celebration of love, family, and the beginning of our forever together.
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4 class="footer-heading">Navigate</h4>
+                    <ul class="footer-menu">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#bride">The Bride</a></li>
+                        <li><a href="#groom">The Groom</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">More</h4>
+                    <ul class="footer-menu">
+                        <li><a href="#venue">Venue</a></li>
+                        <li><a href="#rsvp">RSVP</a></li>
+                        <li><a href="#registry">Registry</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2026 [Bride] & [Groom] Wedding</p>
+            <p>All rights reserved</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
