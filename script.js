@@ -296,5 +296,3 @@ document.querySelectorAll('.btn').forEach(button => {
         setTimeout(() => ripple.remove(), 600);
     });
 });
-
-// Made with Bob
