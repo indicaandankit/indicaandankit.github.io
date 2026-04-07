@@ -112,43 +112,37 @@
             <span class="divider-icon">❖</span>
         </div>
         
-        <div class="couple-grid">
-            <!-- Bride -->
-            <div class="person-card" id="bride">
-                <div class="person-image-container">
-                    <div class="person-image bride-image">
-                        <!-- Placeholder for bride photo -->
-                        <div class="image-placeholder">Bride Photo</div>
+        <div class="couple-unified">
+            <div class="couple-photos">
+                <div class="person-photo-wrapper" id="bride">
+                    <div class="person-image-container">
+                        <div class="person-image bride-image">
+                            <!-- Placeholder for bride photo -->
+                            <div class="image-placeholder">Bride Photo</div>
+                        </div>
                     </div>
+                    <h3 class="person-name">Indica</h3>
                 </div>
-                <h3 class="person-name">Indica</h3>
-                <div class="divider-small">
-                    <span class="divider-icon-small">❖</span>
-                </div>
-                <p class="person-bio">
-                    [Add a brief description about Indica - her interests, how she met Ankit,
-                    what she loves most about their relationship, or any special message she'd like to share.]
-                </p>
-                <a href="#bride-story" class="person-link">Her Story</a>
-            </div>
 
-            <!-- Groom -->
-            <div class="person-card" id="groom">
-                <div class="person-image-container">
-                    <div class="person-image groom-image">
-                        <!-- Placeholder for groom photo -->
-                        <div class="image-placeholder">Groom Photo</div>
+                <div class="person-photo-wrapper" id="groom">
+                    <div class="person-image-container">
+                        <div class="person-image groom-image">
+                            <!-- Placeholder for groom photo -->
+                            <div class="image-placeholder">Groom Photo</div>
+                        </div>
                     </div>
+                    <h3 class="person-name">Ankit</h3>
                 </div>
-                <h3 class="person-name">Ankit</h3>
+            </div>
+            
+            <div class="couple-story">
                 <div class="divider-small">
                     <span class="divider-icon-small">❖</span>
                 </div>
-                <p class="person-bio">
-                    [Add a brief description about Ankit - his interests, how he met Indica,
-                    what he loves most about their relationship, or any special message he'd like to share.]
+                <p class="couple-bio">
+                    [Add your love story here - how you met, your journey together, what makes your relationship special,
+                    and what you're most excited about for your future together.]
                 </p>
-                <a href="#groom-story" class="person-link">His Story</a>
             </div>
         </div>
     </section>
@@ -261,7 +255,7 @@
         </div>
         <p class="section-subtitle">We can't wait to celebrate with you!</p>
         
-        <form class="rsvp-form" id="rsvpForm">
+        <form class="rsvp-form" id="rsvpForm" data-google-sheets-url="https://script.google.com/macros/s/AKfycbz0vDySJ8bT2kcMN04xNxZ7BB4fJk9xrVnuhC0cRASajB2bdLylaHOIp39S2UlwAcCC/exec">
             <div class="form-row">
                 <div class="form-group">
                     <label for="firstName">First Name *</label>
@@ -276,11 +270,6 @@
             <div class="form-group">
                 <label for="email">Email Address *</label>
                 <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone">
             </div>
             
             <div class="form-group">
