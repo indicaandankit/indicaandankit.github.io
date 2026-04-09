@@ -98,10 +98,10 @@ const splashScreen = document.getElementById('splashScreen');
 const enterButton = document.getElementById('enterButton');
 const musicToggle = document.getElementById('musicToggle');
 const backgroundMusic = document.getElementById('backgroundMusic');
-const playIcon = document.querySelector('.play-icon');
-const pauseIcon = document.querySelector('.pause-icon');
+const volumeIcon = document.querySelector('.volume-icon');
+const muteIcon = document.querySelector('.mute-icon');
 
-let isPlaying = false;
+let isMuted = false;
 
 // Handle Enter button click
 enterButton.addEventListener('click', () => {
@@ -110,32 +110,36 @@ enterButton.addEventListener('click', () => {
     
     // Start music
     backgroundMusic.play().then(() => {
-        isPlaying = true;
-        playIcon.classList.add('hidden');
-        pauseIcon.classList.remove('hidden');
+        backgroundMusic.muted = false;
+        isMuted = false;
+        volumeIcon.classList.remove('hidden');
+        muteIcon.classList.add('hidden');
         console.log('Music started successfully');
     }).catch((error) => {
         console.log('Music playback failed:', error);
-        isPlaying = false;
-        playIcon.classList.remove('hidden');
-        pauseIcon.classList.add('hidden');
+        backgroundMusic.muted = true;
+        isMuted = true;
+        volumeIcon.classList.add('hidden');
+        muteIcon.classList.remove('hidden');
     });
 });
 
-// Toggle music on button click
+// Toggle mute/unmute on button click
 musicToggle.addEventListener('click', () => {
-    if (isPlaying) {
-        backgroundMusic.pause();
-        playIcon.classList.remove('hidden');
-        pauseIcon.classList.add('hidden');
-        isPlaying = false;
+    if (isMuted) {
+        // Unmute
+        backgroundMusic.muted = false;
+        volumeIcon.classList.remove('hidden');
+        muteIcon.classList.add('hidden');
+        isMuted = false;
+        console.log('Music unmuted');
     } else {
-        backgroundMusic.play().catch(error => {
-            console.log('Audio playback failed:', error);
-        });
-        playIcon.classList.add('hidden');
-        pauseIcon.classList.remove('hidden');
-        isPlaying = true;
+        // Mute
+        backgroundMusic.muted = true;
+        volumeIcon.classList.add('hidden');
+        muteIcon.classList.remove('hidden');
+        isMuted = true;
+        console.log('Music muted');
     }
 });
 
