@@ -231,8 +231,8 @@ body {
     width: 100%;
 }
 
-/* ===== HERO SECTION ===== */
-.hero {
+/* ===== WEDDING BANNER SECTION ===== */
+.wedding-banner {
     position: relative;
     height: 100vh;
     display: flex;
@@ -245,7 +245,7 @@ body {
 /* Optional: Add your background image here */
 /* Uncomment and replace 'your-image.jpg' with your image path */
 /*
-.hero::before {
+.wedding-banner::before {
     content: '';
     position: absolute;
     top: 0;
@@ -261,7 +261,7 @@ body {
 }
 */
 
-.hero::before {
+.wedding-banner::before {
     content: '';
     position: absolute;
     top: 0;
@@ -274,7 +274,7 @@ body {
     z-index: 0;
 }
 
-.hero-overlay {
+.wedding-banner-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -286,7 +286,7 @@ body {
     /* When using a background image, you may want to increase this to 0.5-0.7 */
 }
 
-.hero-content {
+.wedding-banner-content {
     position: relative;
     z-index: 2;
     text-align: center;
@@ -294,7 +294,7 @@ body {
     max-width: 900px;
 }
 
-.hero-subtitle {
+.wedding-banner-subtitle {
     font-family: var(--font-heading);
     font-size: 1.2rem;
     font-style: italic;
@@ -303,7 +303,7 @@ body {
     letter-spacing: 2px;
 }
 
-.hero-title {
+.wedding-banner-title {
     font-family: var(--font-heading);
     font-size: 5rem;
     font-weight: 400;
@@ -333,7 +333,7 @@ body {
     color: var(--forest-green);
 }
 
-.hero-details {
+.wedding-banner-details {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -348,7 +348,7 @@ body {
     color: var(--sage-green);
 }
 
-.hero-buttons {
+.wedding-banner-buttons {
     display: flex;
     gap: 1.5rem;
     justify-content: center;
@@ -716,7 +716,7 @@ body {
         justify-content: center;
     }
     
-    .hero-title {
+    .wedding-banner-title {
         font-size: 3rem;
     }
     
@@ -724,7 +724,7 @@ body {
         font-size: 2rem;
     }
     
-    .hero-buttons {
+    .wedding-banner-buttons {
         flex-direction: column;
         align-items: center;
     }
@@ -770,7 +770,7 @@ body {
 }
 
 @media (max-width: 480px) {
-    .hero-title {
+    .wedding-banner-title {
         font-size: 2.5rem;
     }
     

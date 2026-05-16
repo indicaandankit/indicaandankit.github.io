@@ -295,14 +295,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Parallax effect for hero section
+// Parallax effect for wedding banner section
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero-content');
+    const weddingBanner = document.querySelector('.wedding-banner-content');
     
-    if (hero && scrolled < window.innerHeight) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = 1 - (scrolled / window.innerHeight);
+    if (weddingBanner && scrolled < window.innerHeight) {
+        weddingBanner.style.transform = `translateY(${scrolled * 0.5}px)`;
+        weddingBanner.style.opacity = 1 - (scrolled / window.innerHeight);
     }
 });
 
