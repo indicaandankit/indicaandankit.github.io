@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding - Indica & Ankit</title>
+    <title>Indica & Ankit</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,7 @@
             </svg>
         </button>
         <audio id="backgroundMusic" loop>
-            <source src="./music.mp4" type="audio/mp4">
+            <source src="./audio/music.mp4" type="audio/mp4">
         </audio>
     </div>
 
@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="scroll-indicator">
-            <span>Scroll Down</span>
+            <!-- <span>Scroll Down</span> -->
             <div class="scroll-arrow">↓</div>
         </div>
     </section>
@@ -150,47 +150,162 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery-section" id="gallery">
+    <!-- Gallery Section 1: Mosaic Grid Layout -->
+    <section class="gallery-section gallery-mosaic" id="gallery">
         <h2 class="section-title">Our Gallery</h2>
         <div class="divider">
             <span class="divider-icon">❖</span>
         </div>
         <p class="section-subtitle">Moments we cherish together</p>
         
-        <div class="gallery-grid">
-            <div class="gallery-item" data-aos="fade-up">
-                <div class="gallery-image">
-                    <div class="image-placeholder">Photo 1</div>
+        <div class="mosaic-grid">
+            <div class="mosaic-item mosaic-large" data-index="0">
+                <div class="mosaic-image" style="background-image: url('images/image1.jpg'); background-size: cover; background-position: center;">
+                    <div class="mosaic-overlay"></div>
                 </div>
             </div>
-            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="gallery-image">
-                    <div class="image-placeholder">Photo 2</div>
+            <div class="mosaic-item mosaic-tall" data-index="1">
+                <div class="mosaic-image" style="background-image: url('images/image2.jpg'); background-size: cover; background-position: center;">
+                    <div class="mosaic-overlay"></div>
                 </div>
             </div>
-            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="gallery-image">
-                    <div class="image-placeholder">Photo 3</div>
+            <div class="mosaic-item mosaic-square" data-index="2">
+                <div class="mosaic-image" style="background-image: url('images/image3.jpg'); background-size: cover; background-position: center;">
+                    <div class="mosaic-overlay"></div>
                 </div>
             </div>
-            <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
-                <div class="gallery-image">
-                    <div class="image-placeholder">Photo 4</div>
+            <div class="mosaic-item mosaic-square" data-index="3">
+                <div class="mosaic-image" style="background-image: url('images/image4.jpg'); background-size: cover; background-position: center;">
+                    <div class="mosaic-overlay"></div>
                 </div>
             </div>
-            <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
-                <div class="gallery-image">
-                    <div class="image-placeholder">Photo 5</div>
+            <div class="mosaic-item mosaic-wide" data-index="4">
+                <div class="mosaic-image" style="background-image: url('images/image6.jpg'); background-size: cover; background-position: center;">
+                    <div class="mosaic-overlay"></div>
                 </div>
             </div>
-            <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
-                <div class="gallery-image">
-                    <div class="image-placeholder">Photo 6</div>
+            <div class="mosaic-item mosaic-square" data-index="5">
+                <div class="mosaic-image" style="background-image: url('images/image5.jpg'); background-size: cover; background-position: center;">
+                    <div class="mosaic-overlay"></div>
+                </div>
+            </div>
+            <div class="mosaic-item mosaic-tall" data-index="6">
+                <div class="mosaic-image" style="background-image: url('images/image8.jpg'); background-size: cover; background-position: center;">
+                    <div class="mosaic-overlay"></div>
+                </div>
+            </div>
+            <div class="mosaic-item mosaic-square" data-index="7">
+                <div class="mosaic-image" style="background-image: url('images/image7.jpg'); background-size: cover; background-position: center;">
+                    <div class="mosaic-overlay"></div>
+                </div>
+            </div>
+            <div class="mosaic-item mosaic-square" data-index="8">
+                <div class="mosaic-image" style="background-image: url('images/image9.jpg'); background-size: cover; background-position: center;">
+                    <div class="mosaic-overlay"></div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Gallery Section 2: Polaroid Style -->
+    <section class="gallery-section gallery-polaroid" id="gallery-polaroid">
+        <h2 class="section-title">Our Gallery - Polaroid Style</h2>
+        <div class="divider">
+            <span class="divider-icon">❖</span>
+        </div>
+        <p class="section-subtitle">Captured memories</p>
+        
+        <!-- Clothesline string -->
+        <div class="clothesline"></div>
+        
+        <div class="polaroid-grid">
+            <div class="polaroid-item" style="--rotation: 2deg;">
+                <div class="clothespin"></div>
+                <div class="polaroid-frame">
+                    <div class="polaroid-image" style="background-image: url('images/image10.jpg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="polaroid-caption">Our first date</div>
+                </div>
+            </div>
+            <div class="polaroid-item" style="--rotation: -3deg;">
+                <div class="clothespin"></div>
+                <div class="polaroid-frame">
+                    <div class="polaroid-image" style="background-image: url('images/image3.jpg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="polaroid-caption">Summer adventures</div>
+                </div>
+            </div>
+            <div class="polaroid-item" style="--rotation: 1deg;">
+                <div class="clothespin"></div>
+                <div class="polaroid-frame">
+                    <div class="polaroid-image" style="background-image: url('images/image4.jpg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="polaroid-caption">Perfect moment</div>
+                </div>
+            </div>
+            <div class="polaroid-item" style="--rotation: -2deg;">
+                <div class="clothespin"></div>
+                <div class="polaroid-frame">
+                    <div class="polaroid-image" style="background-image: url('images/image2.jpg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="polaroid-caption">Together forever</div>
+                </div>
+            </div>
+            <div class="polaroid-item" style="--rotation: 3deg;">
+                <div class="clothespin"></div>
+                <div class="polaroid-frame">
+                    <div class="polaroid-image" style="background-image: url('images/image9.jpg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="polaroid-caption">Love & laughter</div>
+                </div>
+            </div>
+            <div class="polaroid-item" style="--rotation: -1deg;">
+                <div class="clothespin"></div>
+                <div class="polaroid-frame">
+                    <div class="polaroid-image" style="background-image: url('images/image6.jpg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="polaroid-caption">Our journey</div>
+                </div>
+            </div>
+            <div class="polaroid-item" style="--rotation: 2deg;">
+                <div class="clothespin"></div>
+                <div class="polaroid-frame">
+                    <div class="polaroid-image" style="background-image: url('images/image5.jpg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="polaroid-caption">Sweet memories</div>
+                </div>
+            </div>
+            <div class="polaroid-item" style="--rotation: -2deg;">
+                <div class="clothespin"></div>
+                <div class="polaroid-frame">
+                    <div class="polaroid-image" style="background-image: url('images/image7.jpg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="polaroid-caption">Forever us</div>
+                </div>
+            </div>
+            <div class="polaroid-item" style="--rotation: 1deg;">
+                <div class="clothespin"></div>
+                <div class="polaroid-frame">
+                    <div class="polaroid-image" style="background-image: url('images/image8.jpg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="polaroid-caption">Happy times</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">&times;</button>
+        <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+        <button class="lightbox-next" id="lightboxNext" aria-label="Next image">›</button>
+        <div class="lightbox-content">
+            <div class="lightbox-image-container" id="lightboxImage">
+                <!-- Image will be inserted here by JavaScript -->
+            </div>
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
 
     <!-- Venue Section -->
     <section class="venue-section" id="venue">
@@ -238,7 +353,7 @@
             
             <div class="venue-map">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3042.8!2d-74.05833160337002!3d40.092139186573256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c19b5e8e8e8e8e%3A0x8e8e8e8e8e8e8e8e!2sClark's%20Landing%20Yacht%20Club!5e1!3m2!1sen!2sus!4v1647890123456!5m2!1sen!2sus"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Clark's+Landing+Yacht+Club,847+Arnold+Ave,Point+Pleasant,NJ+08742&zoom=15"
                     width="100%"
                     height="100%"
                     style="border:0;"
@@ -256,9 +371,9 @@
         <div class="divider">
             <span class="divider-icon">❖</span>
         </div>
-        <p class="section-subtitle">We can't wait to celebrate with you!</p>
+        <p class="section-subtitle">Coming in Future!</p>
         
-        <form class="rsvp-form" id="rsvpForm" data-google-sheets-url="https://script.google.com/macros/s/AKfycbz0vDySJ8bT2kcMN04xNxZ7BB4fJk9xrVnuhC0cRASajB2bdLylaHOIp39S2UlwAcCC/exec">
+        <!-- <form class="rsvp-form" id="rsvpForm" data-google-sheets-url="https://script.google.com/macros/s/AKfycbz0vDySJ8bT2kcMN04xNxZ7BB4fJk9xrVnuhC0cRASajB2bdLylaHOIp39S2UlwAcCC/exec">
             <div class="form-row">
                 <div class="form-group">
                     <label for="firstName">First Name *</label>
@@ -310,13 +425,13 @@
             </div>
             
             <button type="submit" class="btn btn-primary submit-btn">Submit RSVP</button>
-        </form>
+        </form> -->
         
-        <div class="rsvp-success" id="rsvpSuccess" style="display: none;">
+        <!-- <div class="rsvp-success" id="rsvpSuccess" style="display: none;">
             <div class="success-icon">✓</div>
             <h3>Thank You!</h3>
             <p>Your RSVP has been received. We look forward to celebrating with you!</p>
-        </div>
+        </div> -->
     </section>
 
     <!-- Footer -->

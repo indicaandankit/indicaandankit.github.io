@@ -163,7 +163,7 @@ document.querySelectorAll('input[name="attending"]').forEach(radio => {
 });
 
 // Handle form submission with Google Sheets integration
-rsvpForm.addEventListener('submit', async (e) => {
+rsvpForm && rsvpForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     // Get the Google Sheets Web App URL from the form data attribute
@@ -239,28 +239,155 @@ rsvpForm.addEventListener('submit', async (e) => {
     }
 });
 
-// Gallery hover effects with parallax
-const galleryItems = document.querySelectorAll('.gallery-item');
+// ===== GALLERY LIGHTBOX FUNCTIONALITY =====
+console.log('>>> LIGHTBOX SECTION LOADING <<<');
+let lightbox, lightboxImage, lightboxCaption, lightboxClose, lightboxPrev, lightboxNext;
+let currentImageIndex = 0;
+let currentGalleryItems = [];
+let currentGalleryType = '';
+// Initialize lightbox after DOM is loaded
+function initializeLightbox() {
+    console.log('>>> LIGHTBOX SECTION LOADING <<<');
+    lightbox = document.getElementById('lightbox');
+    lightboxImage = document.getElementById('lightboxImage');
+    lightboxCaption = document.getElementById('lightboxCaption');
+    lightboxClose = document.getElementById('lightboxClose');
+    lightboxPrev = document.getElementById('lightboxPrev');
+    lightboxNext = document.getElementById('lightboxNext');
 
-galleryItems.forEach(item => {
-    item.addEventListener('mousemove', (e) => {
-        const rect = item.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        item.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    // Get all gallery items
+    const mosaicItems = document.querySelectorAll('.mosaic-item');
+    const polaroidItems = document.querySelectorAll('.polaroid-item');
+    console.log("Number of polaroid itnes : " + polaroidItems.length)
+    // Open lightbox when clicking on mosaic gallery items
+    mosaicItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentGalleryItems = Array.from(mosaicItems);
+            currentGalleryType = 'mosaic';
+            currentImageIndex = index;
+            openLightbox();
+        });
     });
-    
-    item.addEventListener('mouseleave', () => {
-        item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+
+    // Open lightbox when clicking on polaroid gallery items
+    polaroidItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentGalleryItems = Array.from(polaroidItems);
+            currentGalleryType = 'polaroid';
+            currentImageIndex = index;
+            openLightbox();
+        });
     });
-});
+
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxPrev) lightboxPrev.addEventListener('click', showPrevImage);
+    if (lightboxNext) lightboxNext.addEventListener('click', showNextImage);
+
+    // Close lightbox when clicking outside the image
+    if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+    }
+
+    // Keyboard navigation for lightbox
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox || !lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowLeft') showPrevImage();
+        else if (e.key === 'ArrowRight') showNextImage();
+    });
+}
+
+function openLightbox() {
+    const currentItem = currentGalleryItems[currentImageIndex];
+
+    // Get the background image from the mosaic or polaroid item
+    let imageElement, caption;
+    if (currentGalleryType === 'mosaic') {
+        imageElement = currentItem.querySelector('.mosaic-image');
+        caption = `Photo ${currentImageIndex + 1} of ${currentGalleryItems.length}`;
+    } else {
+        imageElement = currentItem.querySelector('.polaroid-image');
+        const captionEl = currentItem.querySelector('.polaroid-caption');
+        caption = captionEl ? captionEl.textContent : `Photo ${currentImageIndex + 1} of ${currentGalleryItems.length}`;
+    }
+
+    // Extract the image URL directly from the inline style attribute (avoids
+    // getComputedStyle returning 'none' before the CSS background has loaded,
+    // and avoids dependency on absolute URLs that differ across environments).
+    if (imageElement) {
+        const rawStyle = imageElement.getAttribute('style') || '';
+        const match = rawStyle.match(/background-image\s*:\s*url\(['"]?(.*?)['"]?\)/i);
+        const imageUrl = match ? match[1] : '';
+
+        if (imageUrl) {
+            lightboxImage.innerHTML = `<img src="${imageUrl}" alt="Gallery Image ${currentImageIndex + 1}">`;
+        } else {
+            lightboxImage.innerHTML = '';
+        }
+    }
+
+    lightboxCaption.textContent = caption;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+}
+
+function showPrevImage() {
+    currentImageIndex = (currentImageIndex - 1 + currentGalleryItems.length) % currentGalleryItems.length;
+    updateLightboxImage();
+}
+
+function showNextImage() {
+    currentImageIndex = (currentImageIndex + 1) % currentGalleryItems.length;
+    updateLightboxImage();
+}
+
+function updateLightboxImage() {
+    const currentItem = currentGalleryItems[currentImageIndex];
+
+    // Add fade effect
+    lightboxImage.style.opacity = '0';
+
+    setTimeout(() => {
+        let imageElement, caption;
+        if (currentGalleryType === 'mosaic') {
+            imageElement = currentItem.querySelector('.mosaic-image');
+            caption = `Photo ${currentImageIndex + 1} of ${currentGalleryItems.length}`;
+        } else {
+            imageElement = currentItem.querySelector('.polaroid-image');
+            const captionEl = currentItem.querySelector('.polaroid-caption');
+            caption = captionEl ? captionEl.textContent : `Photo ${currentImageIndex + 1} of ${currentGalleryItems.length}`;
+        }
+
+        if (imageElement) {
+            const rawStyle = imageElement.getAttribute('style') || '';
+            const match = rawStyle.match(/background-image\s*:\s*url\(['"]?(.*?)['"]?\)/i);
+            const imageUrl = match ? match[1] : '';
+
+            if (imageUrl) {
+                lightboxImage.innerHTML = `<img src="${imageUrl}" alt="Gallery Image ${currentImageIndex + 1}">`;
+            } else {
+                lightboxImage.innerHTML = '';
+            }
+        }
+
+        lightboxCaption.textContent = caption;
+        lightboxImage.style.opacity = '1';
+    }, 150);
+}
+
+// Call initializeLightbox when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeLightbox);
+} else {
+    initializeLightbox();
+}
 
 // Enhanced scroll animations with Intersection Observer
 const animateOnScroll = new IntersectionObserver((entries) => {
@@ -269,8 +396,9 @@ const animateOnScroll = new IntersectionObserver((entries) => {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
             
-            // Add stagger effect for gallery items
-            if (entry.target.classList.contains('gallery-item')) {
+            // Add stagger effect for mosaic and polaroid items
+            if (entry.target.classList.contains('mosaic-item') ||
+                entry.target.classList.contains('polaroid-item')) {
                 const delay = entry.target.dataset.aosDelay || 0;
                 entry.target.style.transitionDelay = `${delay}ms`;
             }
@@ -284,7 +412,7 @@ const animateOnScroll = new IntersectionObserver((entries) => {
 // Observe all sections and elements for animation
 document.addEventListener('DOMContentLoaded', () => {
     const elementsToAnimate = document.querySelectorAll(
-        '.gallery-item, .venue-content, .rsvp-form, .section-title, .section-subtitle'
+        '.mosaic-item, .polaroid-item, .venue-content, .rsvp-form, .section-title, .section-subtitle'
     );
     
     elementsToAnimate.forEach(el => {
