@@ -934,6 +934,7 @@ body {
 .mosaic-image {
     width: 100%;
     height: 100%;
+    min-height: 0;
     background: linear-gradient(135deg, var(--secondary-beige), var(--sage-green));
     display: flex;
     align-items: center;
@@ -1061,62 +1062,37 @@ body {
 @media (max-width: 768px) {
     .mosaic-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(9, 200px);
-        gap: 0.75rem;
+        grid-template-rows: auto;
+        aspect-ratio: unset;
+        max-height: none;
+        gap: 0.5rem;
+        padding: 0 1rem;
     }
-    
-    /* Stack all items in 2 columns for mobile */
+
+    /* Reset all explicit placements — auto-flow fills the 2-column grid */
     .mosaic-item.mosaic-large,
     .mosaic-item.mosaic-tall,
     .mosaic-item.mosaic-square,
-    .mosaic-item.mosaic-wide {
-        grid-column: span 1;
-        grid-row: span 2;
-    }
-    
-    .mosaic-item:nth-child(1) {
-        grid-column: 1 / 3;
-        grid-row: 1 / 3;
-    }
-    
-    .mosaic-item:nth-child(2) {
-        grid-column: 1 / 2;
-        grid-row: 3 / 5;
-    }
-    
-    .mosaic-item:nth-child(3) {
-        grid-column: 2 / 3;
-        grid-row: 3 / 5;
-    }
-    
-    .mosaic-item:nth-child(4) {
-        grid-column: 1 / 3;
-        grid-row: 5 / 6;
-    }
-    
-    .mosaic-item:nth-child(5) {
-        grid-column: 1 / 3;
-        grid-row: 6 / 7;
-    }
-    
-    .mosaic-item:nth-child(6) {
-        grid-column: 1 / 2;
-        grid-row: 7 / 9;
-    }
-    
-    .mosaic-item:nth-child(7) {
-        grid-column: 2 / 3;
-        grid-row: 7 / 9;
-    }
-    
-    .mosaic-item:nth-child(8) {
-        grid-column: 1 / 2;
-        grid-row: 9 / 11;
-    }
-    
+    .mosaic-item.mosaic-wide,
+    .mosaic-item:nth-child(1),
+    .mosaic-item:nth-child(2),
+    .mosaic-item:nth-child(3),
+    .mosaic-item:nth-child(4),
+    .mosaic-item:nth-child(5),
+    .mosaic-item:nth-child(6),
+    .mosaic-item:nth-child(7),
+    .mosaic-item:nth-child(8),
     .mosaic-item:nth-child(9) {
-        grid-column: 2 / 3;
-        grid-row: 9 / 11;
+        grid-column: span 1;
+        grid-row: span 1;
+        height: auto;
+    }
+
+    /* Give the image div a fixed aspect ratio so the cell has intrinsic height */
+    .mosaic-item .mosaic-image {
+        height: auto;
+        aspect-ratio: 1 / 1;
+        width: 100%;
     }
 }
 
