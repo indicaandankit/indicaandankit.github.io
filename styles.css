@@ -1069,26 +1069,28 @@ body {
         padding: 0 1rem;
     }
 
-    /* Reset all explicit placements — auto-flow fills the 2-column grid */
+    /* Reset ALL explicit placements (class-based AND nth-child from the 968px block)
+       so auto-flow fills the 2-column grid cleanly */
     .mosaic-item.mosaic-large,
     .mosaic-item.mosaic-tall,
     .mosaic-item.mosaic-square,
     .mosaic-item.mosaic-wide,
-    .mosaic-item:nth-child(1),
-    .mosaic-item:nth-child(2),
-    .mosaic-item:nth-child(3),
-    .mosaic-item:nth-child(4),
-    .mosaic-item:nth-child(5),
-    .mosaic-item:nth-child(6),
-    .mosaic-item:nth-child(7),
-    .mosaic-item:nth-child(8),
-    .mosaic-item:nth-child(9) {
-        grid-column: span 1;
-        grid-row: span 1;
+    .mosaic-grid > .mosaic-item:nth-child(1),
+    .mosaic-grid > .mosaic-item:nth-child(2),
+    .mosaic-grid > .mosaic-item:nth-child(3),
+    .mosaic-grid > .mosaic-item:nth-child(4),
+    .mosaic-grid > .mosaic-item:nth-child(5),
+    .mosaic-grid > .mosaic-item:nth-child(6),
+    .mosaic-grid > .mosaic-item:nth-child(7),
+    .mosaic-grid > .mosaic-item:nth-child(8),
+    .mosaic-grid > .mosaic-item:nth-child(9) {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
         height: auto;
     }
 
-    /* Give the image div a fixed aspect ratio so the cell has intrinsic height */
+    /* Give the image div a square aspect ratio — this is what gives each
+       grid cell its intrinsic height when rows are 'auto' */
     .mosaic-item .mosaic-image {
         height: auto;
         aspect-ratio: 1 / 1;
