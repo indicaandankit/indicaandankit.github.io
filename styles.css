@@ -850,84 +850,78 @@ body {
 }
 
 /* ===== MOSAIC GALLERY LAYOUT ===== */
+/* ===== MOSAIC COLLAGE LAYOUT =====
+   Desktop: 6-col × 6-row square canvas
+   Grid map (each unit = 1 col or 1 row):
+
+   Col:  1    2    3    4    5    6
+   R1:  [a  ] [b  ] [  c        ] [d  ] [l  ]
+   R2:  [a  ] [b  ] [  c        ] [e  ] [l  ]   ← a,b each span 2 rows on left
+   R3:  [  g      ] [  c        ] [  f      ]
+   R4:  [  g      ] [  c        ] [  f      ]
+   R5:  [k  ] [  h   ] [ i ] [  j      ]
+   R6:  [k  ] [  h   ] [ i ] [  j      ]
+
+   a  col 1/2   row 1/3  — small portrait
+   b  col 2/3   row 1/3  — small portrait
+   c  col 3/5   row 1/5  — LARGE centre portrait (2×4)
+   d  col 5/6   row 1/2  — small square
+   l  col 6/7   row 1/3  — small portrait
+   e  col 5/6   row 2/3  — small square
+   f  col 5/7   row 3/5  — medium square (2×2)
+   g  col 1/3   row 3/5  — medium square (2×2)
+   h  col 2/4   row 5/7  — medium landscape (2×2)
+   i  col 4/5   row 5/7  — small portrait (1×2)
+   j  col 4/7   row 5/7  — medium square (2×2)  ← overlaps with i — fix below
+   k  col 1/2   row 5/7  — small portrait
+
+   Corrected final map:
+   Col:  1    2    3    4    5    6
+   R1:  [a  ][b  ][    c    ][d  ][l  ]
+   R2:  [a  ][b  ][    c    ][e  ][l  ]
+   R3:  [  g    ] [    c    ][  f    ]
+   R4:  [  g    ] [    c    ][  f    ]
+   R5:  [k ][  h    ][i ][  j    ]
+   R6:  [k ][  h    ][i ][  j    ]
+*/
+
 .mosaic-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    gap: 1rem;
-    max-width: 1200px;
-    max-height: 1200px;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 0.6rem;
+    max-width: 900px;
     aspect-ratio: 1 / 1;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
+/* ── Desktop item placements ── */
+.mosaic-item.mc-a { grid-column: 1 / 2; grid-row: 1 / 3; }   /* small portrait top-left */
+.mosaic-item.mc-b { grid-column: 2 / 3; grid-row: 1 / 3; }   /* small portrait top-left-2 */
+.mosaic-item.mc-c { grid-column: 3 / 5; grid-row: 1 / 5; }   /* LARGE centre portrait */
+.mosaic-item.mc-d { grid-column: 5 / 6; grid-row: 1 / 2; }   /* small square top-right */
+.mosaic-item.mc-l { grid-column: 6 / 7; grid-row: 1 / 3; }   /* small portrait far-right */
+.mosaic-item.mc-e { grid-column: 5 / 6; grid-row: 2 / 3; }   /* small square right-mid */
+.mosaic-item.mc-f { grid-column: 5 / 7; grid-row: 3 / 5; }   /* medium square right */
+.mosaic-item.mc-g { grid-column: 1 / 3; grid-row: 3 / 5; }   /* medium square left */
+.mosaic-item.mc-k { grid-column: 1 / 2; grid-row: 5 / 7; }   /* small portrait bottom-left */
+.mosaic-item.mc-h { grid-column: 2 / 4; grid-row: 5 / 7; }   /* medium landscape bottom-mid */
+.mosaic-item.mc-i { grid-column: 4 / 5; grid-row: 5 / 7; }   /* small portrait bottom-mid-r */
+.mosaic-item.mc-j { grid-column: 5 / 7; grid-row: 5 / 7; }   /* medium square bottom-right */
+
 .mosaic-item {
     position: relative;
     overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
 }
 
-/* Photo 1: Large rectangle (2x1) - Top left - HALF HEIGHT */
-.mosaic-item.mosaic-large {
-    grid-column: 1 / 3;
-    grid-row: 1 / 2;
-}
-
-/* Photo 2: Tall rectangle (1x1) - Top middle - HALF HEIGHT */
-.mosaic-item.mosaic-tall:nth-child(2) {
-    grid-column: 3 / 4;
-    grid-row: 1 / 2;
-}
-
-/* Photo 3: Square (1x1) - Top right - HALF HEIGHT */
-.mosaic-item.mosaic-square:nth-child(3) {
-    grid-column: 4 / 7;
-    grid-row: 1 / 2;
-}
-
-/* Photo 4: Square (1x1) - Second row left - HALF HEIGHT */
-.mosaic-item.mosaic-square:nth-child(4) {
-    grid-column: 1 / 4;
-    grid-row: 2 / 3;
-}
-
-/* Photo 5: Wide rectangle (1x1) - Second row right - HALF HEIGHT */
-.mosaic-item.mosaic-wide {
-    grid-column: 4 / 7;
-    grid-row: 2 / 3;
-}
-
-/* Photo 6: Square (1x2) - Bottom left */
-.mosaic-item.mosaic-square:nth-child(6) {
-    grid-column: 1 / 2;
-    grid-row: 3 / 5;
-}
-
-/* Photo 7: Square (1x2) - Bottom middle-left */
-.mosaic-item.mosaic-tall:nth-child(7) {
-    grid-column: 2 / 3;
-    grid-row: 3 / 5;
-}
-
-/* Photo 8: Square (2x2) - Bottom middle */
-.mosaic-item.mosaic-square:nth-child(8) {
-    grid-column: 3 / 5;
-    grid-row: 3 / 5;
-}
-
-/* Photo 9: Square (2x2) - Bottom right */
-.mosaic-item.mosaic-square:nth-child(9) {
-    grid-column: 5 / 7;
-    grid-row: 3 / 5;
-}
-
 .mosaic-item:hover {
     transform: scale(1.02);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
     z-index: 10;
 }
 
@@ -987,89 +981,77 @@ body {
     font-style: italic;
 }
 
-/* Responsive adjustments for mosaic grid */
-@media (max-width: 1200px) {
+/* ── Tablet (481px – 900px): 4-col collage, square canvas ── */
+@media (min-width: 481px) and (max-width: 900px) {
     .mosaic-grid {
-        grid-template-rows: repeat(4, 180px);
-    }
-}
-
-/* Tablet: clean 3×3 equal grid */
-@media (min-width: 769px) and (max-width: 968px) {
-    .mosaic-grid {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        aspect-ratio: 1 / 1;
-        max-height: none;
-        gap: 0.75rem;
-        padding: 0 1.5rem;
-    }
-
-    /* Reset all class-based and nth-child placements to fill 3×3 naturally */
-    .mosaic-item.mosaic-large,
-    .mosaic-item.mosaic-tall,
-    .mosaic-item.mosaic-square,
-    .mosaic-item.mosaic-wide,
-    .mosaic-grid > .mosaic-item:nth-child(1),
-    .mosaic-grid > .mosaic-item:nth-child(2),
-    .mosaic-grid > .mosaic-item:nth-child(3),
-    .mosaic-grid > .mosaic-item:nth-child(4),
-    .mosaic-grid > .mosaic-item:nth-child(5),
-    .mosaic-grid > .mosaic-item:nth-child(6),
-    .mosaic-grid > .mosaic-item:nth-child(7),
-    .mosaic-grid > .mosaic-item:nth-child(8),
-    .mosaic-grid > .mosaic-item:nth-child(9) {
-        grid-column: span 1 !important;
-        grid-row: span 1 !important;
-        height: auto;
-    }
-}
-
-/* Mobile: 2-column grid, last photo spans full width */
-@media (max-width: 768px) {
-    .mosaic-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-        aspect-ratio: unset;
-        max-height: none;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
         gap: 0.5rem;
-        padding: 0 1rem;
+        padding: 0 1.25rem;
+        max-width: 700px;
     }
 
-    /* Reset ALL explicit placements so auto-flow fills the 2-column grid cleanly */
-    .mosaic-item.mosaic-large,
-    .mosaic-item.mosaic-tall,
-    .mosaic-item.mosaic-square,
-    .mosaic-item.mosaic-wide,
-    .mosaic-grid > .mosaic-item:nth-child(1),
-    .mosaic-grid > .mosaic-item:nth-child(2),
-    .mosaic-grid > .mosaic-item:nth-child(3),
-    .mosaic-grid > .mosaic-item:nth-child(4),
-    .mosaic-grid > .mosaic-item:nth-child(5),
-    .mosaic-grid > .mosaic-item:nth-child(6),
-    .mosaic-grid > .mosaic-item:nth-child(7),
-    .mosaic-grid > .mosaic-item:nth-child(8) {
-        grid-column: span 1 !important;
-        grid-row: span 1 !important;
-        height: auto;
+    /* Reset all desktop placements */
+    .mosaic-item { grid-column: unset; grid-row: unset; }
+
+    /*
+      Tablet 4×4 map:
+      Col:  1    2    3    4
+      R1:  [a  ][  c    ][d  ]
+      R2:  [b  ][  c    ][e  ]
+      R3:  [  g    ][h  ][  f  ]
+      R4:  [k  ][i  ][  j    ]
+      (l is hidden on tablet)
+    */
+    .mosaic-item.mc-a { grid-column: 1 / 2; grid-row: 1 / 2; }
+    .mosaic-item.mc-b { grid-column: 1 / 2; grid-row: 2 / 3; }
+    .mosaic-item.mc-c { grid-column: 2 / 4; grid-row: 1 / 3; }
+    .mosaic-item.mc-d { grid-column: 4 / 5; grid-row: 1 / 2; }
+    .mosaic-item.mc-e { grid-column: 4 / 5; grid-row: 2 / 3; }
+    .mosaic-item.mc-g { grid-column: 1 / 3; grid-row: 3 / 4; }
+    .mosaic-item.mc-h { grid-column: 3 / 4; grid-row: 3 / 4; }
+    .mosaic-item.mc-f { grid-column: 4 / 5; grid-row: 3 / 4; }
+    .mosaic-item.mc-k { grid-column: 1 / 2; grid-row: 4 / 5; }
+    .mosaic-item.mc-i { grid-column: 2 / 3; grid-row: 4 / 5; }
+    .mosaic-item.mc-j { grid-column: 3 / 5; grid-row: 4 / 5; }
+    .mosaic-item.mc-l { display: none; }
+}
+
+/* ── Mobile (≤ 480px): 2-col uniform grid, no empty spaces ── */
+@media (max-width: 480px) {
+    .mosaic-grid {
+        display: flex;
+        flex-wrap: wrap;
+        aspect-ratio: unset;
+        max-width: none;
+        gap: 0.4rem;
+        padding: 0 0.75rem;
     }
 
-    /* Last photo fills the full width */
-    .mosaic-grid > .mosaic-item:nth-child(9) {
-        grid-column: 1 / -1 !important;
-        grid-row: span 1 !important;
-        height: auto;
+    /* All items: half-width square cells */
+    .mosaic-item,
+    .mosaic-item.mc-a, .mosaic-item.mc-b, .mosaic-item.mc-c,
+    .mosaic-item.mc-d, .mosaic-item.mc-e, .mosaic-item.mc-f,
+    .mosaic-item.mc-g, .mosaic-item.mc-h, .mosaic-item.mc-i,
+    .mosaic-item.mc-j, .mosaic-item.mc-k, .mosaic-item.mc-l {
+        width: calc(50% - 0.2rem);
+        flex: none;
     }
 
-    /* Square cells — aspect-ratio on .mosaic-image gives each cell its intrinsic height */
+    /* Last item (mc-l) spans full width */
+    .mosaic-item.mc-l {
+        width: 100%;
+    }
+
+    /* Square cells via aspect-ratio on the image div */
     .mosaic-item .mosaic-image {
         height: auto;
         aspect-ratio: 1 / 1;
         width: 100%;
     }
 
-    /* The full-width last cell can be a bit shorter — 16:9 feels better at full width */
-    .mosaic-grid > .mosaic-item:nth-child(9) .mosaic-image {
+    /* Full-width last cell: 16:9 */
+    .mosaic-item.mc-l .mosaic-image {
         aspect-ratio: 16 / 9;
     }
 }
@@ -1771,5 +1753,145 @@ body {
     .lightbox-image-container img {
         max-width: 95vw;
         max-height: 75vh;
+    }
+}
+
+/* ===== TIGHT COLLAGE GALLERY (Gallery 2) =====
+   Mirrors the reference image: zero-gap grid, varied cell sizes.
+   Desktop layout — 6 columns × 4 rows (each row ~220px):
+
+   Col:   1      2      3      4      5      6
+   R1:  [cc-1 ][cc-1 ][cc-2 ][cc-3 ][cc-4 ][cc-4 ]   ← cc-1 spans 2 cols, cc-4 spans 2 cols
+   R2:  [cc-5 ][cc-6         ][cc-6 ][cc-7 ][cc-7 ]   ← cc-6 spans 2 cols (+ spans R3), cc-7 spans 2 cols
+   R3:  [cc-8 ][cc-6         ][cc-6 ][cc-9 ][cc-9 ]   ← cc-5,cc-8 each 1 col; cc-9 spans 2 cols
+   R4:  [cc-10][cc-10][cc-11 ][cc-11][cc-12][cc-12]   ← each pair spans 2 cols
+*/
+
+.gallery-collage {
+    background: linear-gradient(180deg, var(--primary-beige) 0%, var(--off-white) 100%);
+}
+
+.collage-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 220px);
+    gap: 0;                         /* no gap — edge-to-edge like the reference */
+    max-width: 960px;
+    margin: 0 auto;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+/* ── Desktop placements ── */
+.collage-item.cc-1  { grid-column: 1 / 3; grid-row: 1 / 2; }  /* wide landscape top-left */
+.collage-item.cc-2  { grid-column: 3 / 4; grid-row: 1 / 2; }  /* portrait top-centre-l */
+.collage-item.cc-3  { grid-column: 4 / 5; grid-row: 1 / 2; }  /* portrait top-centre-r */
+.collage-item.cc-4  { grid-column: 5 / 7; grid-row: 1 / 2; }  /* wide landscape top-right */
+.collage-item.cc-5  { grid-column: 1 / 2; grid-row: 2 / 3; }  /* small portrait mid-left-top */
+.collage-item.cc-6  { grid-column: 2 / 5; grid-row: 2 / 4; }  /* LARGE centre (3 cols × 2 rows) */
+.collage-item.cc-7  { grid-column: 5 / 7; grid-row: 2 / 3; }  /* wide mid-right-top */
+.collage-item.cc-8  { grid-column: 1 / 2; grid-row: 3 / 4; }  /* small portrait mid-left-bot */
+.collage-item.cc-9  { grid-column: 5 / 7; grid-row: 3 / 4; }  /* wide mid-right-bot */
+.collage-item.cc-10 { grid-column: 1 / 3; grid-row: 4 / 5; }  /* wide bottom-left */
+.collage-item.cc-11 { grid-column: 3 / 5; grid-row: 4 / 5; }  /* wide bottom-centre */
+.collage-item.cc-12 { grid-column: 5 / 7; grid-row: 4 / 5; }  /* wide bottom-right */
+
+.collage-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.collage-image {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--secondary-beige), var(--sage-green));
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.45s ease;
+}
+
+.collage-item:hover .collage-image {
+    transform: scale(1.06);
+}
+
+.collage-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(61, 90, 76, 0.75);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.collage-item:hover .collage-overlay {
+    opacity: 1;
+}
+
+/* ── Tablet (481px – 900px): 3-col × 4-row ── */
+@media (min-width: 481px) and (max-width: 900px) {
+    .collage-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, 180px);
+        max-width: 680px;
+    }
+
+    /* Reset desktop */
+    .collage-item { grid-column: unset; grid-row: unset; }
+
+    /*
+      Tablet 3×5 map:
+      Col:  1      2      3
+      R1:  [cc-1       ][cc-2 ]   cc-1 spans 2 cols
+      R2:  [cc-3 ][cc-4       ]   cc-4 spans 2 cols
+      R3:  [cc-5 ][cc-6       ]   cc-6 spans 2 cols, 2 rows
+      R4:  [cc-7 ][cc-6       ]
+      R5:  [cc-8 ][cc-9 ][cc-10]
+      cc-11, cc-12 hidden on tablet
+    */
+    .collage-item.cc-1  { grid-column: 1 / 3; grid-row: 1 / 2; }
+    .collage-item.cc-2  { grid-column: 3 / 4; grid-row: 1 / 2; }
+    .collage-item.cc-3  { grid-column: 1 / 2; grid-row: 2 / 3; }
+    .collage-item.cc-4  { grid-column: 2 / 4; grid-row: 2 / 3; }
+    .collage-item.cc-5  { grid-column: 1 / 2; grid-row: 3 / 4; }
+    .collage-item.cc-6  { grid-column: 2 / 4; grid-row: 3 / 5; }
+    .collage-item.cc-7  { grid-column: 1 / 2; grid-row: 4 / 5; }
+    .collage-item.cc-8  { grid-column: 1 / 2; grid-row: 5 / 6; }
+    .collage-item.cc-9  { grid-column: 2 / 3; grid-row: 5 / 6; }
+    .collage-item.cc-10 { grid-column: 3 / 4; grid-row: 5 / 6; }
+    .collage-item.cc-11 { display: none; }
+    .collage-item.cc-12 { display: none; }
+}
+
+/* ── Mobile (≤ 480px): 2-col flex, uniform square cells, no gaps ── */
+@media (max-width: 480px) {
+    .collage-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        max-width: none;
+        border-radius: 4px;
+    }
+
+    /* All items: half-width, square aspect */
+    .collage-item,
+    .collage-item.cc-1,  .collage-item.cc-2,  .collage-item.cc-3,
+    .collage-item.cc-4,  .collage-item.cc-5,  .collage-item.cc-6,
+    .collage-item.cc-7,  .collage-item.cc-8,  .collage-item.cc-9,
+    .collage-item.cc-10, .collage-item.cc-11, .collage-item.cc-12 {
+        width: 50%;
+        aspect-ratio: 1 / 1;
+        display: block;
+    }
+
+    /* Large centre (cc-6) goes full-width on mobile for prominence */
+    .collage-item.cc-6 {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+
+    .collage-image {
+        width: 100%;
+        height: 100%;
     }
 }

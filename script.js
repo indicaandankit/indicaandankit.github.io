@@ -258,7 +258,8 @@ function initializeLightbox() {
     // Get all gallery items
     const mosaicItems = document.querySelectorAll('.mosaic-item');
     const polaroidItems = document.querySelectorAll('.polaroid-item');
-    console.log("Number of polaroid itnes : " + polaroidItems.length)
+    const collageItems = document.querySelectorAll('.collage-item');
+
     // Open lightbox when clicking on mosaic gallery items
     mosaicItems.forEach((item, index) => {
         item.addEventListener('click', () => {
@@ -274,6 +275,16 @@ function initializeLightbox() {
         item.addEventListener('click', () => {
             currentGalleryItems = Array.from(polaroidItems);
             currentGalleryType = 'polaroid';
+            currentImageIndex = index;
+            openLightbox();
+        });
+    });
+
+    // Open lightbox when clicking on collage gallery items
+    collageItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentGalleryItems = Array.from(collageItems);
+            currentGalleryType = 'collage';
             currentImageIndex = index;
             openLightbox();
         });
@@ -302,10 +313,13 @@ function initializeLightbox() {
 function openLightbox() {
     const currentItem = currentGalleryItems[currentImageIndex];
 
-    // Get the background image from the mosaic or polaroid item
+    // Get the background image from the gallery item
     let imageElement, caption;
     if (currentGalleryType === 'mosaic') {
         imageElement = currentItem.querySelector('.mosaic-image');
+        caption = `Photo ${currentImageIndex + 1} of ${currentGalleryItems.length}`;
+    } else if (currentGalleryType === 'collage') {
+        imageElement = currentItem.querySelector('.collage-image');
         caption = `Photo ${currentImageIndex + 1} of ${currentGalleryItems.length}`;
     } else {
         imageElement = currentItem.querySelector('.polaroid-image');
@@ -358,6 +372,9 @@ function updateLightboxImage() {
         let imageElement, caption;
         if (currentGalleryType === 'mosaic') {
             imageElement = currentItem.querySelector('.mosaic-image');
+            caption = `Photo ${currentImageIndex + 1} of ${currentGalleryItems.length}`;
+        } else if (currentGalleryType === 'collage') {
+            imageElement = currentItem.querySelector('.collage-image');
             caption = `Photo ${currentImageIndex + 1} of ${currentGalleryItems.length}`;
         } else {
             imageElement = currentItem.querySelector('.polaroid-image');
@@ -412,7 +429,7 @@ const animateOnScroll = new IntersectionObserver((entries) => {
 // Observe all sections and elements for animation
 document.addEventListener('DOMContentLoaded', () => {
     const elementsToAnimate = document.querySelectorAll(
-        '.mosaic-item, .polaroid-item, .venue-content, .rsvp-form, .section-title, .section-subtitle'
+        '.mosaic-item, .polaroid-item, .collage-item, .venue-content, .rsvp-form, .section-title, .section-subtitle'
     );
     
     elementsToAnimate.forEach(el => {
