@@ -239,6 +239,37 @@ rsvpForm && rsvpForm.addEventListener('submit', async (e) => {
     }
 });
 
+document.querySelectorAll('.faq-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+        const answer = toggle.nextElementSibling;
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+        toggle.setAttribute('aria-expanded', String(!isExpanded));
+        answer.hidden = isExpanded;
+        const icon = toggle.querySelector('.faq-icon');
+        if (icon) {
+            icon.textContent = isExpanded ? '+' : '−';
+        }
+    });
+});
+
+document.querySelectorAll('.download-overlay').forEach(link => {
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const imageUrl = link.getAttribute('href');
+        const downloadName = link.getAttribute('download') || 'photo.jpg';
+        const tempLink = document.createElement('a');
+        tempLink.href = imageUrl;
+        tempLink.download = downloadName;
+        tempLink.style.display = 'none';
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        document.body.removeChild(tempLink);
+    });
+});
+
 // ===== GALLERY LIGHTBOX FUNCTIONALITY =====
 console.log('>>> LIGHTBOX SECTION LOADING <<<');
 let lightbox, lightboxImage, lightboxCaption, lightboxClose, lightboxPrev, lightboxNext;
